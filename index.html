@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Siswa SMK - DKV</title>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           1. CSS VARIABLES & RESET
+           ========================================== */
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f43f5e;
+            --dark: #0f172a;
+            --dark-card: #1e293b;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            --gradient-accent: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 30px -10px rgba(99, 102, 241, 0.2);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        /* ==========================================
+           2. NAVBAR
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.05), transparent 40%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .hero-text h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-card {
+            position: relative;
+            width: 300px;
+            height: 380px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: var(--white);
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.8);
+            transform: rotate(-2deg);
+            transition: var(--transition);
+        }
+
+        .profile-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--radius-lg) - 6px);
+        }
+
+        /* ==========================================
+           4. TENTANG SAYA & DATA SISWA
+           ========================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #f1f5f9;
+        }
+
+        .info-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item span.label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .info-item span.value {
+            font-size: 0.95rem;
+            color: var(--dark);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ==========================================
+           5. KEAHLIAN & PENDIDIKAN
+           ========================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-sm);
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .skill-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 4px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f1f5f9;
+        }
+
+        /* ==========================================
+           6. PORTOFOLIO / KARYA
+           ========================================== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .portfolio-img-box {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: #e2e8f0;
+        }
+
+        .portfolio-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .portfolio-img-box img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 6px 0;
+        }
+
+        .portfolio-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           7. CITA-CITA SECTION
+           ========================================== */
+        .dream-section {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dream-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .dream-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #fde047;
+        }
+
+        .dream-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .dream-desc {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        /* ==========================================
+           8. KONTAK & FOOTER
+           ========================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin: 0 auto 16px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--dark-card);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--dark-card);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================
+           9. RESPONSIVE DESIGN (MEDIA QUERIES)
+           ========================================== */
+        @media (max-width: 992px) {
+            .hero-grid, .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .info-list {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: var(--transition);
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-palette"></i> <span id="nav-logo-name">Portofolio</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#education">Pendidikan</a></li>
+                <li><a href="#portfolio">Karya</a></li>
+                <li><a href="#dream">Cita-Cita</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. BERANDA / HERO -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="badge" id="hero-badge">Siswa SMK - DKV</span>
+                    <h1>Halo, Saya <br><span class="highlight" id="hero-nama">Nama Siswa</span></h1>
+                    <p id="hero-deskripsi">Deskripsi singkat siswa SMK Desain Komunikasi Visual yang kreatif dan siap berkembang.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Hubungi Saya</a>
+                        <a href="#portfolio" class="btn btn-secondary"><i class="fa-solid fa-compass"></i> Lihat Karya</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="profile-card">
+                        <img id="hero-foto" src="" alt="Foto Profil" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. TENTANG SAYA & DATA SISWA -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Saya</h2>
+                <p>Mengenal lebih dekat latar belakang dan data diri saya</p>
+            </div>
+            <div class="about-grid">
+                <div class="info-card">
+                    <h3>Biodata Diri</h3>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="label">Nama Lengkap</span>
+                            <span class="value" id="about-nama">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">NIS / NISN</span>
+                            <span class="value" id="about-nisn">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Kelas</span>
+                            <span class="value" id="about-kelas">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Jurusan</span>
+                            <span class="value" id="about-jurusan">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">TTL</span>
+                            <span class="value" id="about-ttl">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Alamat</span>
+                            <span class="value" id="about-alamat">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Sekolah</h3>
+                    <p style="margin-top: 10px; color: var(--text-muted);" id="about-sekolah-desc">
+                        Saat ini saya menempuh pendidikan di <strong id="about-sekolah" style="color: var(--primary);">SMK</strong> fokus pada bidang Desain Komunikasi Visual. Mempelajari konsep visual, kreativitas media, dan dasar-dasar desain modern.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. KEAHLIAN -->
+    <section id="skills" class="section-padding" style="background: #fff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Keahlian & Minat</h2>
+                <p>Kemampuan dan fokus utama yang terus saya kembangkan</p>
+            </div>
+            <div class="skills-grid" id="skills-list">
+                <!-- Skill items injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PENDIDIKAN -->
+    <section id="education" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Riwayat Pendidikan</h2>
+                <p>Jejak langkah pendidikan formal yang saya tempuh</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="badge">Saat Ini</span>
+                        <h3 id="edu-smk-nama">SMKN Bojonggambir</h3>
+                        <p style="font-weight: 600; color: var(--primary);" id="edu-smk-jurusan">Desain Komunikasi Visual (DKV)</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Fokus pada teknik desain dasar, grafis, fotografi, dan media digital.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>SMP / Matsanewa</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Lulus dan melanjutkan minat ke sekolah kejuruan kreatif.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PORTOFOLIO / KARYA -->
+    <section id="portfolio" class="section-padding" style="background: #fff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portofolio Karya</h2>
+                <p>Beberapa proyek dan hasil latihan desain yang telah saya buat</p>
+            </div>
+            <div class="portfolio-grid" id="portfolio-list">
+                <!-- Projects injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CITA-CITA -->
+    <section id="dream" class="section-padding">
+        <div class="container">
+            <div class="dream-section">
+                <div class="dream-content">
+                    <div class="dream-icon">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <span style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; opacity: 0.9;">Impian & Ambisi Masa Depan</span>
+                    <h2 class="dream-title" id="dream-title">Menjadi CEO Batu Giok</h2>
+                    <p class="dream-desc" id="dream-desc">
+                        Bercita-cita tinggi untuk memimpin industri bermutu tinggi, menggabungkan strategi bisnis visioner, nilai estetika visual yang kuat, dan manajemen profesional secara berkelanjutan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. KONTAK -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Saya</h2>
+                <p>Mari terhubung melalui media sosial dan kontak di bawah ini</p>
+            </div>
+            <div class="contact-grid">
+                <a id="btn-wa" href="#" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h4>WhatsApp</h4>
+                    <p id="contact-wa" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;">-</p>
+                </a>
+                <a id="btn-ig" href="#" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <h4>Instagram</h4>
+                    <p id="contact-ig" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;">-</p>
+                </a>
+                <a id="btn-fb" href="#" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="fa-brands fa-facebook"></i></div>
+                    <h4>Facebook</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;">Kunjungi Profil</p>
+                </a>
+                <a id="btn-email" href="#" class="contact-card">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h4>Email</h4>
+                    <p id="contact-email" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;">-</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a id="foot-fb" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="foot-ig" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a id="foot-wa" href="#" target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <p style="font-size: 0.9rem; opacity: 0.7;">
+                &copy; <span id="year"></span> <span id="footer-nama">Dede Azmi</span>. All Rights Reserved. <br>
+                Portofolio Siswa SMK DKV.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       JAVASCRIPT & DATA SISWA
+       ========================================== -->
+    <script>
+        /* ==========================================
+           DATA SISWA (Ubah data diri di sini)
+           ========================================== */
+        const DATA_SISWA = {
+            namaLengkap: "DEDE AZMI",
+            linkFotoProfil: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600", // Ganti link foto jika ada
+            linkFacebook: "https://www.facebook.com/share/1EbPrFBGrm/",
+            nisNisn: "0112798692",
+            kelas: "X DKV 1",
+            jurusan: "DESAIN KOMUNIKASI VISUAL",
+            sekolah: "SMKN BOJONGGAMBIR",
+            ttl: "TASIKMALAYA, 14 MARET 2011",
+            alamat: "KP CIROYOM",
+            email: "dedeazmi.dkv@gmail.com", // Auto placeholder
+            whatsapp: "083877426176",
+            instagram: "MIAZZZWE",
+            deskripsiDiri: "Siswa kelas X DKV SMKN Bojonggambir yang penuh semangat dalam mempelajari seni visual, eksplorasi estetika, serta bercita-cita tinggi menguasai dunia kepemimpinan masa depan.",
+            
+            // Keahlian
+            keahlian: [
+                { nama: "Rest & Recovery (Tidur)", desc: "Menjaga stamina, fokus tinggi, serta kesegaran pikiran untuk ide-ide kreatif baru.", icon: "fa-solid fa-bed" },
+                { nama: "Visual Design Basics", desc: "Memahami elemen visual, garis, bentuk, dan komposisi warna dasar.", icon: "fa-solid fa-pen-nib" },
+                { nama: "Konsep Kreatif & Branding", desc: "Mengembangkan gagasan unik untuk identitas visual produk dan bisnis.", icon: "fa-solid fa-lightbulb" }
+            ],
+            
+            citaCita: "MENJADI CEO BATU GIOK",
+            citaCitaDeskripsi: "Membangun dan memimpin perusahaan eksekutif berbasis komoditas batu giok berkualitas premium dengan mengintegrasikan nilai estetik visual tinggi dan manajemen profesional.",
+
+            // Minimal 3 Karya/Proyek
+            karya: [
+                {
+                    judul: "Desain Banner & Branding Makanan",
+                    kategori: "Graphic Design",
+                    deskripsi: "Proyek latihan kelas X dalam membuat banner promosi UMKM dengan warna atraktif.",
+                    gambar: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    judul: "Eksplorasi Ilustrasi Vector Vektor",
+                    kategori: "Illustration",
+                    deskripsi: "Pembuatan aset visual karakter digital menggunakan perangkat lunak grafis.",
+                    gambar: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    judul: "Fotografi Produk & Pencahayaan",
+                    kategori: "Photography",
+                    deskripsi: "Latihan teknik dasar komposisi foto produk studio dengan objek fisik.",
+                    gambar: "https://images.unsplash.com/photo-1542744094-3a31216953c2?auto=format&fit=crop&q=80&w=600"
+                }
+            ]
+        };
+
+        /* ==========================================
+           LOGIK RENDER AUTOMATIS
+           ========================================== */
+        document.addEventListener("DOMContentLoaded", () => {
+            // Render Nama & Hero
+            document.getElementById("nav-logo-name").innerText = DATA_SISWA.namaLengkap.split(" ")[0];
+            document.getElementById("hero-nama").innerText = DATA_SISWA.namaLengkap;
+            document.getElementById("hero-badge").innerText = `Siswa ${DATA_SISWA.kelas} - ${DATA_SISWA.jurusan}`;
+            document.getElementById("hero-deskripsi").innerText = DATA_SISWA.deskripsiDiri;
+            document.getElementById("hero-foto").src = DATA_SISWA.linkFotoProfil;
+
+            // Render Biodata
+            document.getElementById("about-nama").innerText = DATA_SISWA.namaLengkap;
+            document.getElementById("about-nisn").innerText = DATA_SISWA.nisNisn;
+            document.getElementById("about-kelas").innerText = DATA_SISWA.kelas;
+            document.getElementById("about-jurusan").innerText = DATA_SISWA.jurusan;
+            document.getElementById("about-ttl").innerText = DATA_SISWA.ttl;
+            document.getElementById("about-alamat").innerText = DATA_SISWA.alamat;
+            document.getElementById("about-sekolah").innerText = DATA_SISWA.sekolah;
+
+            // Render Keahlian
+            const skillsContainer = document.getElementById("skills-list");
+            skillsContainer.innerHTML = DATA_SISWA.keahlian.map(skill => `
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="${skill.icon}"></i></div>
+                    <h3 class="skill-title">${skill.nama}</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">${skill.desc}</p>
+                </div>
+            `).join('');
+
+            // Render Pendidikan
+            document.getElementById("edu-smk-nama").innerText = DATA_SISWA.sekolah;
+            document.getElementById("edu-smk-jurusan").innerText = `${DATA_SISWA.jurusan} (${DATA_SISWA.kelas})`;
+
+            // Render Portofolio
+            const portfolioContainer = document.getElementById("portfolio-list");
+            portfolioContainer.innerHTML = DATA_SISWA.karya.map(item => `
+                <div class="portfolio-card">
+                    <div class="portfolio-img-box">
+                        <img src="${item.gambar}" alt="${item.judul}">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-tag">${item.kategori}</span>
+                        <h3 class="portfolio-title">${item.judul}</h3>
+                        <p class="portfolio-desc">${item.deskripsi}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Cita-cita
+            document.getElementById("dream-title").innerText = DATA_SISWA.citaCita;
+            document.getElementById("dream-desc").innerText = DATA_SISWA.citaCitaDeskripsi;
+
+            // Render Kontak
+            const cleanWA = DATA_SISWA.whatsapp.replace(/[^0-9]/g, '');
+            const waFormatted = cleanWA.startsWith('0') ? '62' + cleanWA.slice(1) : cleanWA;
+            
+            document.getElementById("contact-wa").innerText = DATA_SISWA.whatsapp;
+            document.getElementById("btn-wa").href = `https://wa.me/${waFormatted}`;
+            document.getElementById("foot-wa").href = `https://wa.me/${waFormatted}`;
+
+            document.getElementById("contact-ig").innerText = `@${DATA_SISWA.instagram}`;
+            document.getElementById("btn-ig").href = `https://instagram.com/${DATA_SISWA.instagram}`;
+            document.getElementById("foot-ig").href = `https://instagram.com/${DATA_SISWA.instagram}`;
+
+            document.getElementById("btn-fb").href = DATA_SISWA.linkFacebook;
+            document.getElementById("foot-fb").href = DATA_SISWA.linkFacebook;
+
+            document.getElementById("contact-email").innerText = DATA_SISWA.email;
+            document.getElementById("btn-email").href = `mailto:${DATA_SISWA.email}`;
+
+            document.getElementById("footer-nama").innerText = DATA_SISWA.namaLengkap;
+            document.getElementById("year").innerText = new Date().getFullYear();
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+
+            menuToggle.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+            });
+
+            // Auto Close Menu on Link Click (Mobile)
+            document.querySelectorAll(".nav-links a").forEach(link => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
